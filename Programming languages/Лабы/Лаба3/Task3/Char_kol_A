@@ -1,0 +1,43 @@
+
+package com.company;
+import java.lang.String;
+import java.util.Arrays;
+
+
+public class Char_kol_A implements Comparable<Char_kol_A>{
+    private char[] data;
+
+    public Char_kol_A(char ... data){
+        setStr(data);
+    }
+
+    public void setStr(char[] data) {
+        this.data = data;
+    }
+
+    public char[] getStr() {
+        return data;
+    }
+
+    public int count_A_letters(){
+        int kol = 0;
+        for( char x : data ) {
+            if( 'a' == x || 'A' == x) {
+                kol++;
+            }
+        }
+        return kol;
+    }
+
+    @Override
+    public String toString() {
+        return "Char_kol_A{" +
+                "data='" + Arrays.toString(data) + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Char_kol_A o) {
+        return Double.compare(count_A_letters(), o.count_A_letters());
+    }
+}
