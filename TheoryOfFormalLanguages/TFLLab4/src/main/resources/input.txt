@@ -1,0 +1,12 @@
+Grammar:
+S->QT|a|b
+Q->eps|dV
+V->cS
+T->R
+R->aS
+
+Word:
+baaaa
+
+Redacted Word For Incremental Parsing:
+bbbaaaa

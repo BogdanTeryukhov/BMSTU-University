@@ -1,0 +1,7 @@
+Grammar:
+S->bAc|eps
+A->bc|eps
+Word:
+bc
+Redacted Word For Incremental Parsing:
+bbcc
