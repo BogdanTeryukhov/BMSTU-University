@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebApp</title>
+</head>
+<body>
+<div class="content">
+    <div class="form">
+        <input id="command" type="text" name="command" placeholder="Enter command">
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+    <pre id="answer" class="async-answer"></pre>
+</div>
+<script>
+    webSocket = new WebSocket("ws://localhost:8090");
+    webSocket.onmessage = (event) => {
+        console.log(event.data)
+        let answer = document.getElementById("answer")
+        const msg = JSON.parse(event.data);
+        answer.innerHTML += msg.message+"<hr>"
+        answer.scrollTop = answer.scrollHeight
+    }
+
+    document.getElementById("command").addEventListener("keyup", (e) => {
+        if(e.key === "Enter"){
+            sendMessage()
+        }
+    })
+
+    sendMessage = () => {
+        let commandInput = document.getElementById("command")
+        webSocket.send(`{ "Command" : "${commandInput.value}" }`)
+        commandInput.value = ""
+    }
+</script>
+</body>
+</html>
